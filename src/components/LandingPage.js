@@ -1,5 +1,5 @@
 // src/components/LandingPage.js
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Container, Typography, Button, Box, Grid, CssBaseline, TextField, AppBar, Toolbar,
   Card, CardContent, CardMedia, List, ListItem, ListItemIcon, ListItemText, Accordion, AccordionSummary, AccordionDetails,
@@ -129,7 +129,7 @@ function LandingPage() {
   const [tabValue, setTabValue] = React.useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
-  const heroSectionRef = React.useRef(null);
+  const heroSectionRef = useRef(null);
 
   const handleViewWorkflow = () => {
     navigate('/workflow');
