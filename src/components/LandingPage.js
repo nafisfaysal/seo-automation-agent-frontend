@@ -1,4 +1,3 @@
-// src/components/LandingPage.js
 import React, { useState, useRef } from 'react';
 import {
   Container, Typography, Button, Box, Grid, CssBaseline, TextField, AppBar, Toolbar,
@@ -148,6 +147,14 @@ function LandingPage() {
     const formData = new FormData(form);
     const name = formData.get('name');
     const email = formData.get('email');
+
+    // Track form submission event
+    if (window.gtag) {
+      window.gtag('event', 'form_submission', {
+        'event_category': 'engagement',
+        'event_label': 'waitlist_signup'
+      });
+    }
 
     try {
       const response = await fetch(FORMSPARK_ACTION_URL, {
