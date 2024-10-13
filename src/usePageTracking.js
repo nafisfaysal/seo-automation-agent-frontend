@@ -6,9 +6,12 @@ function usePageTracking() {
 
   useEffect(() => {
     if (window.gtag) {
+      console.log('Tracking page view:', location.pathname + location.search);
       window.gtag('config', 'G-XGCCK36MED', {
         page_path: location.pathname + location.search,
       });
+    } else {
+      console.warn('gtag is not available');
     }
   }, [location]);
 }
