@@ -3,15 +3,21 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import LandingPage from './components/LandingPage';
 import usePageTracking from './usePageTracking';
 
-function App() {
+function AppContent() {
   usePageTracking();
 
   return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+}
+
+function App() {
+  return (
     <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="*" element={<LandingPage />} />
-      </Routes>
+      <AppContent />
     </Router>
   );
 }
