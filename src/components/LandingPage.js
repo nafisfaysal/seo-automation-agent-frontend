@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import {
   Container, Typography, Button, Box, Grid, CssBaseline, TextField, AppBar, Toolbar,
   Card, CardContent, CardMedia, List, ListItem, ListItemIcon, ListItemText, Accordion, AccordionSummary, AccordionDetails,
-  IconButton
+  IconButton, Avatar
 } from '@mui/material';
 import { styled } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
@@ -24,6 +24,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Link from '@mui/material/Link';
+import StarIcon from '@mui/icons-material/Star';
 
 const FORMSPARK_ACTION_URL = "https://submit-form.com/y8yM94lqU";
 
@@ -122,6 +123,24 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
     margin: '15px auto',
   },
 }));
+
+const TestimonialCard = ({ name, title, content, avatar }) => (
+  <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', p: 3 }}>
+    <Box sx={{ mb: 2 }}>
+      {[1, 2, 3, 4, 5].map((star) => (
+        <StarIcon key={star} sx={{ color: '#FFD700', fontSize: 20 }} />
+      ))}
+    </Box>
+    <Typography variant="body1" sx={{ flexGrow: 1, mb: 2 }}>{content}</Typography>
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <Box>
+        <Typography variant="subtitle1" fontWeight="bold">{name}</Typography>
+        <Typography variant="body2" color="text.secondary">{title}</Typography>
+      </Box>
+      <Avatar src={avatar} alt={name} />
+    </Box>
+  </Card>
+);
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -298,6 +317,37 @@ function LandingPage() {
                 {submitMessage}
               </Typography>
             )}
+          </Box>
+
+          {/* New waitlist information section */}
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 4 }}>
+            <Box sx={{ display: 'flex', mr: 2 }}>
+              {['/avatar1.jpg', '/avatar2.jpg', '/avatar3.jpg', '/avatar4.jpg'].map((avatar, index) => (
+                <Avatar
+                  key={index}
+                  src={avatar}
+                  sx={{
+                    width: 32,
+                    height: 32,
+                    border: '2px solid white',
+                    marginLeft: index !== 0 ? -1 : 0,
+                  }}
+                />
+              ))}
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Typography variant="body2" sx={{ color: 'secondary.main', fontWeight: 'bold', mr: 1 }}>
+                246
+              </Typography>
+              <Typography variant="body2" sx={{ color: 'secondary.main' }}>
+                joined the waitlist
+              </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', ml: 2 }}>
+              {[1, 2, 3, 4, 5].map((star) => (
+                <StarIcon key={star} sx={{ color: 'secondary.main', fontSize: 20 }} />
+              ))}
+            </Box>
           </Box>
         </Container>
       </GradientBackground>
@@ -547,6 +597,57 @@ function LandingPage() {
           )}
         </Container>
       </GradientBackground>
+
+      {/* What Our Users Are Saying Section */}
+      <Box sx={{ py: 8, bgcolor: '#f5f5f5' }}>
+        <Container maxWidth="lg">
+          <Typography variant="h3" component="h2" align="center" gutterBottom>
+            What Our Users Are Saying
+          </Typography>
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={6} lg={4}>
+              <TestimonialCard
+                name="Ida"
+                title="Social Media Manager"
+                content="As a social media manager, I've always spent way too much time repurposing content. I've tried many different tools, but ContentCast is the first one that actually does the job. It's really great at generating engaging posts and saves me a lot of time, allowing me to focus on what I enjoy doing."
+                avatar="/path-to-ida-avatar.jpg"
+              />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <TestimonialCard
+                name="Anjali"
+                title="X Content Strategy Coach"
+                content="ContentCast has completely transformed the way I approach content creation. As someone who is always juggling multiple tasks, it provided the perfect structure to streamline my workflow. The platform is intuitive, and the tools are designed to boost productivity without feeling overwhelming. I especially loved how easy it was to repurpose content across platforms. Thanks to ContentCast, I've saved countless hours while improving the quality and reach of my posts. Highly recommended for anyone serious about leveling up their content game!"
+                avatar="/path-to-anjali-avatar.jpg"
+              />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <TestimonialCard
+                name="John"
+                title="Founder"
+                content="Easy to use and a huge time saver. Great tool for repurposing newsletters into social media posts."
+                avatar="/path-to-john-avatar.jpg"
+              />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <TestimonialCard
+                name="Nico"
+                title="Founder & Newsletter Owner"
+                content="This will be super helpful for my long form content! Looking forward to trying it out 👋."
+                avatar="/path-to-nico-avatar.jpg"
+              />
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+              <TestimonialCard
+                name="Yuma Ueno"
+                title="Founder & Content Creator"
+                content="It's a great tool for content creators! It's helpful to convert my long articles to short content for social media platforms."
+                avatar="/path-to-yuma-avatar.jpg"
+              />
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
 
       {/* Pricing Section */}
       <PricingTable />
