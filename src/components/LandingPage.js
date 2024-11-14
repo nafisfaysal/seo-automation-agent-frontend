@@ -351,7 +351,7 @@ function LandingPage() {
           </Box>
           <Box sx={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', boxShadow: '0 10px 20px rgba(0,0,0,0.1)', borderRadius: '10px' }}>
             <iframe 
-              src="https://www.youtube.com/embed/zEp3JIhHyv0" 
+              src="https://www.youtube.com/embed/dv9nCb6CmdU?si=-OU4G5q6iK5yzL6v" 
               style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowFullScreen
